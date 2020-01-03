@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.b1.util.FilePathGenerator;
@@ -53,4 +54,20 @@ public class MemberService {
 		return memberFilesMapper.selectMemberFiles(memberFilesVO);
 	}
 
+	public boolean memberJoinValidate(MemberVO memberVO, BindingResult bindingResult) throws Exception{
+		boolean check=false;	//true=err , false=ok
+		//annotation 검증 결과
+		if(bindingResult.hasErrors()) {
+			check=true;
+		}
+		
+		//password 일치하는지 검증
+		if(!memberVO.getPw().equals(memberVO.getPw2())) {
+			check=true;
+			bindingResult.rejectValue("pw2", "memberVO.getPw().notEqual");
+										//form의 path명, properties의 키값
+		}
+		return check;
+	}
+	
 }

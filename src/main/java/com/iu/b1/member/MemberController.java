@@ -1,12 +1,16 @@
 package com.iu.b1.member;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,11 +45,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberJoin")
-	public ModelAndView memberJoin(MemberVO memberVO,MultipartFile file)throws Exception{
-		System.out.println(memberVO.getId());
-		System.out.println(memberVO.getPw());
-		System.out.println(memberVO.getEmail());
-		System.out.println(memberVO.getName());
+	public ModelAndView memberJoin(@Valid MemberVO memberVO,BindingResult bindingResult,MultipartFile file)throws Exception{
 		int result=memberService.memberJoin(memberVO, file);
 		String message="Join fail";
 		String path="../";
@@ -59,6 +59,12 @@ public class MemberController {
 		return mv;
 	}
 	
+	@ModelAttribute
+	public MemberVO  getMemberVO()throws Exception{
+		return new MemberVO();
+		//이 컨트롤러의 모든 메서드에 멤버를 담아서 전달해줌.
+		//그래서 각각 메서드의 매개변수에 memberVO를 작성시킬 필요가 없음.
+	}
 	@GetMapping("memberLogin")
 	public void memberLogin()throws Exception{
 		

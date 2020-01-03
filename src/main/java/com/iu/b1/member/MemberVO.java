@@ -1,9 +1,23 @@
 package com.iu.b1.member;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class MemberVO {
 
+	@NotEmpty(message = "id 비어있으면 안됨")
 	private String id;
+	@Size(min = 4,max = 10)
+	@Pattern(regexp = "[0-9]+")
 	private String pw;
+	private String pw2;
+	public String getPw2() {
+		return pw2;
+	}
+	public void setPw2(String pw2) {
+		this.pw2 = pw2;
+	}
 	private String name;
 	private String email;
 	
