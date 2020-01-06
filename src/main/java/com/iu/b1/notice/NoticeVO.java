@@ -1,6 +1,7 @@
 package com.iu.b1.notice;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -19,13 +20,15 @@ public class NoticeVO {
 	private String contents;
 	private Date regDate;
 	private int hit;
-	private NoticeFilesVO noticeFilesVO;
+	private List<NoticeFilesVO> noticeFilesVOs;
 	
-	public NoticeFilesVO getNoticeFilesVO() {
-		return noticeFilesVO;
+	
+	
+	public List<NoticeFilesVO> getNoticeFilesVOs() {
+		return noticeFilesVOs;
 	}
-	public void setNoticeFilesVO(NoticeFilesVO noticeFilesVO) {
-		this.noticeFilesVO = noticeFilesVO;
+	public void setNoticeFilesVOs(List<NoticeFilesVO> noticeFilesVOs) {
+		this.noticeFilesVOs = noticeFilesVOs;
 	}
 	public int getNum() {
 		return num;
