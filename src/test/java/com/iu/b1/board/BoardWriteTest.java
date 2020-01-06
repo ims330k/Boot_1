@@ -18,7 +18,7 @@ class BoardWriteTest {
 	@Test
 	void test() throws Exception {
 	
-		for(int i=0;i<30;i++) {
+		for(int i=30;i<60;i++) {
 			NoticeVO noticeVO=new NoticeVO();
 			noticeVO.setTitle("title"+i);
 			noticeVO.setWriter("writer"+i);

@@ -19,7 +19,14 @@ public class NoticeVO {
 	private String contents;
 	private Date regDate;
 	private int hit;
+	private NoticeFilesVO noticeFilesVO;
 	
+	public NoticeFilesVO getNoticeFilesVO() {
+		return noticeFilesVO;
+	}
+	public void setNoticeFilesVO(NoticeFilesVO noticeFilesVO) {
+		this.noticeFilesVO = noticeFilesVO;
+	}
 	public int getNum() {
 		return num;
 	}

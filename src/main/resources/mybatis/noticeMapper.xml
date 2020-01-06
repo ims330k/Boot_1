@@ -3,10 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.iu.b1.notice.NoticeMapper">
+ <select id="boardList" resultType="com.iu.b1.notice.NoticeVO" parameterType="com.iu.b1.util.Pager">
+ 	select * from notice order by num desc limit #{start}, #{per}
+ </select>
+
+
+  <select id="boardSelect" resultType="com.iu.b1.notice.NoticeVO" parameterType="com.iu.b1.notice.NoticeVO">
+<!--  	select N.*, F.* from notice N full join noticeFiles F on N.num= -->
+select * from notice where num=#{num}
+ </select>
+ 
+ <select id="countNotice" resultType="java.lang.Integer">
+ 	select count(num) as cnt from notice
+ </select>
 	<insert id="boardWrite" parameterType="com.iu.b1.notice.NoticeVO" useGeneratedKeys="true" keyProperty="num">	
 		insert into notice values(#{num},#{title},#{writer},#{contents},now(),0)
 	</insert>
-	
 <!-- 	<insert id="boardFileWrite" parameterType="com.iu.b1.notice.NoticeFilesVO"> -->
 <!-- 		insert into noticeFiles values(null,#{num},#{fname},#{oname}) -->
 <!-- 	</insert> -->
@@ -16,4 +28,5 @@
 			(null, #{item.num}, #{item.fname}, #{item.oname})
 		</foreach>
 	</insert>
+	
  </mapper>

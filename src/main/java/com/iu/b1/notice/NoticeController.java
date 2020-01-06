@@ -1,5 +1,7 @@
 package com.iu.b1.notice;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.b1.util.Pager;
+
 @Controller
 @RequestMapping("/notice/**")
 public class NoticeController {
 
 	@Autowired
 	private NoticeService noticeService;
+	
+	@GetMapping("noticeSelect")
+	public ModelAndView noticeSelect(int num)throws Exception{
+		NoticeVO noticeVO=new NoticeVO();
+		noticeVO.setNum(num);
+		noticeVO=noticeService.boardSelect(noticeVO);
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("noticeVO", noticeVO);
+		mv.setViewName("notice/noticeSelect");
+		return mv;
+	}
+	
+	@GetMapping("noticeList")
+	public ModelAndView noticeList(Pager pager)throws Exception{
+		ModelAndView mv=new ModelAndView();
+		List<NoticeVO> noticeList=noticeService.boardList(pager);
+		mv.addObject("list", noticeList);
+		mv.addObject("pager", pager);
+		mv.setViewName("notice/noticeList");
+		return mv;
+	}
+	
 //	@GetMapping("noticeWrite")
 //	public ModelAndView noticeWrite(Model model) {
 //		//1.

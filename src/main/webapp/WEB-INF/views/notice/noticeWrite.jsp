@@ -30,7 +30,7 @@
   
   <div class="form-group">
   <h3>contents</h3>
-    <form:input path="contents" class="form-control" id="contents"/>
+    <form:textarea path="contents" class="form-control" id="contents"/>
     <form:errors path="contents"/>
   </div>
   
