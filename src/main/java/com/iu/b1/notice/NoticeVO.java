@@ -2,6 +2,8 @@ package com.iu.b1.notice;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 public class NoticeVO {
 //	num	int(11)
 //	title	varchar(45)
@@ -10,7 +12,9 @@ public class NoticeVO {
 //	regDate	date
 //	hit	int(11)
 	private int num;
+	@NotEmpty
 	private String title;
+	@NotEmpty
 	private String writer;
 	private String contents;
 	private Date regDate;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.iu.b1.notice.NoticeMapper">
+	<insert id="boardWrite" parameterType="com.iu.b1.notice.NoticeVO" useGeneratedKeys="true" keyProperty="num">	
+		insert into notice values(#{num},#{title},#{writer},#{contents},now(),0)
+	</insert>
+	
+<!-- 	<insert id="boardFileWrite" parameterType="com.iu.b1.notice.NoticeFilesVO"> -->
+<!-- 		insert into noticeFiles values(null,#{num},#{fname},#{oname}) -->
+<!-- 	</insert> -->
+	<insert id="boardFileWrite" parameterType="java.util.List">
+		insert into noticeFiles values
+		<foreach collection="list" item="item" separator=",">
+			(null, #{item.num}, #{item.fname}, #{item.oname})
+		</foreach>
+	</insert>
+ </mapper>

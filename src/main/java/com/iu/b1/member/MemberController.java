@@ -65,6 +65,7 @@ public class MemberController {
 		//이 컨트롤러의 모든 메서드에 멤버를 담아서 전달해줌.
 		//그래서 각각 메서드의 매개변수에 memberVO를 작성시킬 필요가 없음.
 	}
+	
 	@GetMapping("memberLogin")
 	public void memberLogin()throws Exception{
 		
