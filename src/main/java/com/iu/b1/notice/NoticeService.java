@@ -29,18 +29,20 @@ public class NoticeService {
 	public int boardWrite(NoticeVO noticeVO,MultipartFile[] files)throws Exception{
 		int result=noticeMapper.boardWrite(noticeVO);
 		File file=filePathGenerator.getUseClassPathResource("notice");
-		List<NoticeFilesVO> list = new ArrayList<>();
-		for(int i=1; i<files.length;i++) {
-			NoticeFilesVO noticeFilesVO=new NoticeFilesVO();
-			String filename=fileSaver.save(file, files[i]);
-			noticeFilesVO.setNum(noticeVO.getNum());
-			noticeFilesVO.setFname(filename.substring(0, 6));
-			noticeFilesVO.setOname(files[i].getOriginalFilename());
-			//mapper 호출
-			//result=noticeMapper.boardFileWrite(noticeFilesVO);
-			list.add(noticeFilesVO);
+		List<NoticeFilesVO> list = new ArrayList<NoticeFilesVO>();
+		if(files.length>1) {
+			for(int i=1; i<files.length;i++) {
+				NoticeFilesVO noticeFilesVO=new NoticeFilesVO();
+				String filename=fileSaver.save(file, files[i]);
+				noticeFilesVO.setNum(noticeVO.getNum());
+				noticeFilesVO.setFname(filename.substring(0, 6));
+				noticeFilesVO.setOname(files[i].getOriginalFilename());
+				//mapper 호출
+				//result=noticeMapper.boardFileWrite(noticeFilesVO);
+				list.add(noticeFilesVO);
+			}
+			noticeMapper.boardFileWrite(list);
 		}
-		noticeMapper.boardFileWrite(list);
 		return result;
 	}
 	
