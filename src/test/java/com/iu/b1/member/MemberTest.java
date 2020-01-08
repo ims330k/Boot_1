@@ -21,10 +21,12 @@ class MemberTest {
 		MemberVO memberVO=new MemberVO();
 		memberVO.setId("teest12");
 		memberVO.setPw("teest12");
-		memberVO.setEmail("teest12");
+		memberVO.setEmail("teest66");
 		memberVO.setName("teest12");
 		int result=memberMapper.memberJoin(memberVO);
 		assertEquals(1, result);
 	}
 
+	
+	
 }

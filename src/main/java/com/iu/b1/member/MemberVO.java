@@ -12,6 +12,8 @@ public class MemberVO {
 	@Pattern(regexp = "[0-9]+")
 	private String pw;
 	private String pw2;
+	
+	
 	public String getPw2() {
 		return pw2;
 	}

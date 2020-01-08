@@ -15,7 +15,7 @@ class BoardWriteTest {
 	@Autowired
 	private NoticeMapper noticeMapper;
 	
-	@Test
+	//@Test
 	void test() throws Exception {
 	
 		for(int i=30;i<60;i++) {
